@@ -1,4 +1,6 @@
 ---
+import Footer from '../components/scafold/Footer.astro';
+
 interface Props {
 	title: string; //Page title
 	description?: string; // Overide description tag
@@ -31,6 +33,7 @@ const { title='',
 	</head>
 	<body>
 		<slot />
+		<Footer />
 	</body>
 </html>
 <style is:global>
