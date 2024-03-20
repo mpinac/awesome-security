@@ -1,20 +1,33 @@
 ---
 interface Props {
-	title: string;
+	title: string; //Page title
+	description?: string; // Overide description tag
+    keywords?: string; // Overide keywords tag
+	hideNav?: boolean; // Don't show the navbar (just homepage)
+	author?: string; // Author of the content
 }
 
-const { title } = Astro.props;
+const { title='',
+	    description='',
+		keywords='security, privacy, awesome privacy, data collection, free software, open source, privacy tools, privacy respecting software',
+		author='Miguel Angel Pina' 
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords}>
+		<meta name="author" content={author}>
+
+		<!-- Page info, viewport, Astro credit -->
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		
 	</head>
 	<body>
 		<slot />
