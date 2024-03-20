@@ -50,6 +50,15 @@ const licenseContent = async () => {
 	return await response.text();
 };
 
+const projectRequirements = async () => {
+	const url = 'https://raw.githubusercontent.com/mpinac/awesome-security/HEAD/REQUIREMENTS.md';
+	const response = await fetch(url);
+	if (!response.ok) {
+		throw new Error('Failed to fetch project requirements');
+	}
+	return await response.text();
+};
+
 ---
 
 <Layout title="About | Awesome Security" description={description}>
@@ -104,7 +113,12 @@ const licenseContent = async () => {
 		<hr />
 
         <h2 id="creteria">Software Requirements</h2>
-		<div class="software-requirements"><p set:html={parseMarkdown(projectRequrements)}></p></div>
+		<div class="software-requirements">
+			{projectRequirements().then((requirements) => {
+				return (<p set:html={parseMarkdown(requirements)}></p>)
+			})}
+			
+		</div>
 		<hr />
 
 		<h2 id="license">License</h2>
@@ -112,6 +126,11 @@ const licenseContent = async () => {
 			All content on Awesome Privacy is freely available, within the public domain,
 			licensed under Creative Commons Zero v1.0 Universal.
 			The code for the website is licensed under MIT.
+		</p>
+		<p>
+			{licenseContent().then((license) => {
+				return (<pre class="license-content">{license}</pre>)
+			})}
 		</p>
 		
 		
