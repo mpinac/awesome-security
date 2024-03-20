@@ -42,13 +42,14 @@ Usually these entries go within the "Notable Mentions" section instead._
 `;
 
 const licenseContent = async () => {
-	const url = 'https://raw.githubusercontent.com/Lissy93/awesome-privacy/HEAD/LICENSE';
+	const url = 'https://raw.githubusercontent.com/mpinac/awesome-security/HEAD/LICENSE';
 	const response = await fetch(url);
 	if (!response.ok) {
 		throw new Error('Failed to fetch license');
 	}
 	return await response.text();
 };
+
 ---
 
 <Layout title="About | Awesome Security" description={description}>
@@ -112,11 +113,7 @@ const licenseContent = async () => {
 			licensed under Creative Commons Zero v1.0 Universal.
 			The code for the website is licensed under MIT.
 		</p>
-		<p>
-			{licenseContent().then((license) => {
-				return (<pre class="license-content">{license}</pre>)
-			})}
-		</p>
+		
 		
 	</main>
 </Layout>
